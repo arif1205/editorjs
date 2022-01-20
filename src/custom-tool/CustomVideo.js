@@ -1,12 +1,16 @@
+// import utils from util.js
 import {
   creatingWrapper,
   creatingVideosWrapper,
   videoToolbarSvg,
   linkToolbarSvg,
   modalStruture,
+  videoModal,
 } from "./util";
 
+// custom video plugin class
 export default class CustomVideo {
+  // toolbox viewer
   static get toolbox() {
     return {
       title: "Add Video",
@@ -14,41 +18,50 @@ export default class CustomVideo {
     };
   }
 
+  // Global values
   constructor({ data }) {
     // this.data = data;
     this.wrapper = undefined;
     this.files = [];
   }
 
-  // render video
+  // render video box
   render() {
+    // create video ui from util.js
     this.wrapper = creatingWrapper();
     this.wrapper
       .querySelector("input[type=file]")
       .addEventListener("change", (e) => {
         this.files = [...this.files, ...e.target.files];
+        // show video list after selecting videos
         this._createVideo(this.files);
       });
 
+    // drag enter event
     this.wrapper.addEventListener("dragenter", function (e) {
       e.preventDefault();
       e.dataTransfer.dropEffect = "copy";
     });
 
+    // drop event
     this.wrapper.addEventListener("drop", (e) => {
       e.preventDefault();
       this.files = [...this.files, ...e.dataTransfer.files];
       this._createVideo(this.files);
     });
 
+    // return the rendered UI
     return this.wrapper;
   }
 
   // creating list from urls
   _createVideo(url) {
+    // create videos wrapper element
     const videosWrapper = creatingVideosWrapper();
     const videosList = videosWrapper.querySelector(".videos-list");
+    // remove the previous UI
     this.wrapper.innerHTML = "";
+    // For each video create a video item div with neccessary elements
     url.forEach((el, i) => {
       const EL = document.createElement("div");
       EL.classList.add("videos-item");
@@ -71,10 +84,13 @@ export default class CustomVideo {
       });
       // edit functionality
       EL.querySelector(".edit").addEventListener("click", (e) => {
+        // create a modal when edit is clicked from util js
         const modalWrapper = modalStruture();
         document.body.appendChild(modalWrapper);
+        // add element existing data to modal
         modalWrapper.querySelector("input[name=addVideo]").value = el.name;
         modalWrapper.querySelector("input[name=addLink").value = el.link || "";
+        // functionality of add button
         modalWrapper
           .querySelector(".addNewVideo")
           .addEventListener("click", () => {
@@ -89,14 +105,27 @@ export default class CustomVideo {
             modalWrapper.style.display = "none";
           });
       });
+      // open video functionality
+      EL.querySelector(".videos-item-icon").addEventListener("click", (e) => {
+        // create video modal
+        const videoModalWrapper = videoModal("./editorjsVideo.mp4");
+        document.body.appendChild(videoModalWrapper);
+
+        // handler
+        videoModalWrapper
+          .querySelector(".close-btn")
+          .addEventListener("click", (e) => {
+            videoModalWrapper.remove();
+          });
+      });
     });
 
     this.wrapper.appendChild(videosWrapper);
-    // console.log(url);
   }
 
   // add block setting
   renderSettings() {
+    // two block setting
     const settings = [
       {
         name: "Link",
@@ -111,7 +140,7 @@ export default class CustomVideo {
 
     settings.forEach((tune) => {
       let button;
-
+      // setting for choose file
       if (tune.name === "Choose files") {
         let choosefile = document.createElement("input");
         choosefile.type = "file";
@@ -137,12 +166,14 @@ export default class CustomVideo {
 
         wrapper.appendChild(button);
       } else {
+        // setting for add with link button
         button = document.createElement("div");
 
         button.classList.add("cdx-settings-button");
         button.innerHTML = tune.icon;
         wrapper.appendChild(button);
 
+        // handler for add with link button
         button.addEventListener("click", (e) => {
           const modalWrapper = modalStruture();
           document.body.appendChild(modalWrapper);
@@ -155,8 +186,10 @@ export default class CustomVideo {
               const link =
                 modalWrapper.querySelector("input[name=addLink").value;
 
+              // update files
               this.files = [...this.files, { name, link }];
               this._createVideo(this.files);
+              // dismiss after add
               modalWrapper.style.display = "none";
             });
         });

@@ -1,11 +1,11 @@
-// Custom video box UI
+// adding multiple attr same time
 const multiAttr = (el, attrs) => {
   for (var key in attrs) {
     el.setAttribute(key, attrs[key]);
   }
 };
 
-// creating neccessary element
+// creating main UI wrapper with neccessary element
 const creatingWrapper = () => {
   const wrapper = document.createElement("div");
   const fileInput = document.createElement("input");
@@ -61,7 +61,7 @@ const creatingWrapper = () => {
 };
 // custom video box UI end
 
-// show videos list
+// show videos list container
 const creatingVideosWrapper = () => {
   const videosWrapper = document.createElement("div");
   videosWrapper.classList.add("videos-wrapper");
@@ -81,17 +81,7 @@ const creatingVideosWrapper = () => {
 };
 // show videos list end
 
-const getTheFileName = () => {
-  let names = [];
-  fileInput.addEventListener("change", (e) => {
-    console.log("fileChanged");
-    names = [...e.target.files];
-    console.log(names);
-    return names;
-  });
-};
-
-// modal structure
+// modal structure for edit or add new video
 const modalStruture = () => {
   // modal wrapper
   const modalWrapper = document.createElement("div");
@@ -156,6 +146,34 @@ const modalStruture = () => {
   return modalWrapper;
 };
 
+// create modal for video opener
+const videoModal = (url) => {
+  // wrapper
+  const videoModalWrapper = document.createElement("div");
+  videoModalWrapper.classList.add("video-modal-wrapper");
+
+  // wrapper container
+  const videoContainer = document.createElement("div");
+  videoContainer.classList.add("video-modal-container");
+  videoModalWrapper.appendChild(videoContainer);
+
+  // video
+  const video = document.createElement("video");
+  multiAttr(video, { controls: "", autoplay: "", src: url });
+  videoContainer.appendChild(video);
+  const source = document.createElement("source");
+  multiAttr(source, { src: url, type: "video/*" });
+  video.appendChild(source);
+
+  // close button
+  const closeBtn = document.createElement("button");
+  closeBtn.classList.add("close-btn");
+  closeBtn.innerHTML = `<i class="fas fa-times"></i>`;
+  videoContainer.appendChild(closeBtn);
+
+  return videoModalWrapper;
+};
+
 // video svg
 const videoToolbarSvg = `<svg width="20" height="19" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 490.004 490.004" style="enable-background:new 0 0 490.004 490.004;" xml:space="preserve">
@@ -202,8 +220,8 @@ const linkToolbarSvg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="htt
 export {
   videoToolbarSvg,
   linkToolbarSvg,
-  getTheFileName,
   creatingVideosWrapper,
   creatingWrapper,
   modalStruture,
+  videoModal,
 };

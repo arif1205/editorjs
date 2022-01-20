@@ -139,15 +139,3 @@ const run = async () => {
 };
 
 run();
-
-// button
-// const btn = document.querySelector(".btn");
-
-// btn.addEventListener("click", async () => {
-//   try {
-//     const data = await editor.save();
-//     // console.log(data);
-//   } catch (e) {
-//     console.log(e);
-//   }
-// });

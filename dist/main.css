@@ -1,6 +1,20 @@
 /*!******************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/styles.css ***!
   \******************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
+/*!**********************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/styles.css (1) ***!
+  \**********************************************************************/
+/* fonts */
+
+/* variables  */
+:root {
+  --dark-blue: #38404d;
+  --light-blue: #0e55c7;
+}
+/* ******* */
+/* utils */
+/* ******* */
 * {
   margin: 0;
   padding: 0;
@@ -14,16 +28,132 @@ html {
 
 body {
   margin: 0;
-  background-color: #aeaeae;
+  background-color: #f2f2f2;
+  min-height: 150vh;
+  font-family: "Roboto", sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
+main {
+  position: relative;
+}
+
+header {
+  background: var(--dark-blue);
+}
+
+nav {
+  width: 100%;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+/* ******* */
+/* top navigation  */
+/* ******* */
+.nav_container {
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav_container button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.nav_container .back-button button {
+  border-radius: 50%;
+  color: white;
+  font-size: 22px;
+  padding: 2px 5px;
+}
+
+.nav_container .right-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.nav_container .right-buttons .btn {
+  padding: 10px 30px;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.nav_container .right-buttons .btn-outline {
+  background: white;
+  color: var(--light-blue);
+}
+
+.nav_container .right-buttons .btn-fill {
+  background: var(--light-blue);
+  color: #fff;
+}
+
+/* ******* */
+/* header / title section  */
+/* ******* */
+.title_section_container {
+  padding: 60px;
+  padding-bottom: 150px;
+  width: 70%;
+  margin: auto;
+  color: white;
+}
+
+.title_section_container h1 {
+  margin-bottom: 8px;
+}
+
+.title_section_container p {
+  font-size: 15px;
+}
+
+/* ******** */
+/* Editor js */
+/* ******** */
 #editorjs {
+  position: absolute;
+  left: 50%;
+  bottom: -95%;
+  transform: translateX(-50%);
   background-color: White;
   width: 80%;
-  margin: auto;
-  margin-top: 50px;
-  border-radius: 20px;
+  border-radius: 5px;
   padding: 20px;
+}
+
+/* *********** */
+/* responsive code  */
+/* ************* */
+@media screen and (max-width: 768px) {
+  .title_section_container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .title_section_container {
+    padding: 20px 20px 80px;
+  }
+
+  #editorjs {
+    bottom: -140%;
+    width: 90%;
+  }
+
+  .modal-container {
+    min-width: 80% !important;
+  }
+
+  .modal-container .button-container button {
+    width: max-content;
+  }
 }
 
 /*!************************************************************************************!*\
@@ -143,19 +273,21 @@ input[type="file"] {
 }
 
 /* // modal design  */
-.modal-wrapper {
+.modal-wrapper,
+.video-modal-wrapper {
   position: fixed;
   top: 0;
   width: 100%;
   height: 100%;
   z-index: 100;
-  background: #00000030;
+  background: #00000080;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.modal-container {
+.modal-container,
+.video-modal-container {
   background: white;
   padding: 20px;
   border-radius: 3px;
@@ -164,6 +296,44 @@ input[type="file"] {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+/* video modal container */
+.video-modal-container {
+  min-width: 80%;
+  max-height: 80vh;
+  min-height: 80vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-modal-container video {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  width: 100%;
+  padding: 20px;
+  margin: auto;
+  height: 100%;
+}
+
+.close-btn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background: white;
+  box-shadow: 0 0 2px 2px #ccc;
+  color: black;
+  font-size: 18px;
+  border-radius: 50%;
+  border: none;
 }
 
 .input-container {
