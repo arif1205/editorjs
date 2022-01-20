@@ -1,0 +1,171 @@
+.custom-video-box {
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.initial-state {
+  border: 1px solid black;
+  border-radius: 3px;
+  width: 100%;
+  background: white;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.initial-state-container {
+  background-color: #f5f3f3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 3px;
+}
+
+.initial-state-container img {
+  height: 17px;
+  width: 20px;
+}
+
+.initial-state-container span {
+  color: royalblue;
+}
+
+.videos-wrapper {
+  font-weight: bold;
+  font-size: 14px;
+  padding-bottom: 50px;
+}
+
+.videos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.videos-item {
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+  padding: 5px 10px;
+}
+
+.videos-item:hover {
+  box-shadow: 0px 1px 2px #00000010;
+}
+
+.videos-item-wrapper {
+  width: fit-content;
+  display: inline-block;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.videos-item-icon {
+  margin-right: 5px;
+  width: 25px;
+  height: 25px;
+  padding: 4px;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.videos-item img {
+  height: 100%;
+  width: 100%;
+}
+
+.videos-item-tools {
+  display: flex;
+  position: absolute;
+  left: 101%;
+  top: 50%;
+  transform: translateY(-50%);
+  gap: 15px;
+  background: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+  box-shadow: 0 0 1px 1px #ccc;
+  display: none;
+}
+
+.videos-item:hover .videos-item-tools {
+  display: flex;
+}
+
+.videos-item-tools span {
+  cursor: pointer;
+}
+
+.videos-wrapper-heading {
+}
+
+.videos-wrapper-heading img {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+}
+
+/* // modal design  */
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background: #00000030;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  background: white;
+  padding: 20px;
+  border-radius: 3px;
+  min-width: 500px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 5px 10px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.input-container input:focus {
+  outline: none;
+  border-color: #000;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button-container button {
+  border: none;
+  background-color: transparent;
+  border: 1px solid black;
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 150px;
+  text-align: center;
+}
