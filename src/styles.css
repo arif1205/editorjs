@@ -112,14 +112,12 @@ nav {
 /* Editor js */
 /* ******** */
 #editorjs {
-  position: absolute;
-  left: 50%;
-  bottom: -95%;
-  transform: translateX(-50%);
+  transform: translateY(-50px);
   background-color: White;
   width: 80%;
   border-radius: 5px;
   padding: 20px;
+  margin: auto;
 }
 
 /* *********** */
